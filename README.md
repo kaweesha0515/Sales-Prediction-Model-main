@@ -1,52 +1,54 @@
-# Sales Prediction Model 
+# 📊 Sales Prediction Model
 
-## Project Overview
-Machine learning project for predicting sales based on advertising spending across different media channels.
+## 🚀 Project Overview
+This machine learning project aims to predict product sales based on advertising budgets allocated across various media channels, including **TV**, **Radio**, and **Newspaper**. It explores the effectiveness of different regression models and highlights the importance of each feature in driving sales.
 
-## Dataset
-- Source: Advertising dataset (https://www.kaggle.com/datasets/bumba5341/advertisingcsv)
-- Features:
-  - TV advertising spending
-  - Radio advertising spending
-  - Newspaper advertising spending
+## 📂 Dataset
+- **Source:** [Kaggle - Advertising Dataset](https://www.kaggle.com/datasets/bumba5341/advertisingcsv)
+- **Features:**
+  - `TV`: Budget spent on TV advertisements
+  - `Radio`: Budget spent on radio advertisements
+  - `Newspaper`: Budget spent on newspaper advertisements
+- **Target:** `Sales`: Units sold
 
-## Project Objectives
-- Predict sales using multiple regression techniques
-- Compare performance of different models
-- Analyze feature importance
+## 🎯 Objectives
+- Predict sales using supervised regression models
+- Compare the accuracy of multiple regression techniques
+- Visualize correlations and feature importance
 
-## Methodology
-1. Exploratory Data Analysis (EDA)
-2. Data Preprocessing
-3. Model Training
+## 🛠️ Methodology
+1. **Exploratory Data Analysis (EDA)**
+2. **Data Cleaning & Preprocessing**
+3. **Model Development:**
    - Linear Regression
    - Random Forest Regression
-   - Voting Regressor (Ensemble Method)
+   - Voting Regressor (Ensemble Learning)
 
-## Libraries Used
-- pandas
-- numpy
-- scikit-learn
-- matplotlib
-- seaborn
+## 🧰 Libraries Used
+- `pandas` – data manipulation
+- `numpy` – numerical computations
+- `scikit-learn` – machine learning
+- `matplotlib` & `seaborn` – data visualization
 
-## Key Features
-- Correlation analysis
-- Feature importance visualization
-- Multiple model comparison
+## 📈 Model Performance
+| Metric | Score |
+|--------|-------|
+| Mean Absolute Error (MAE) | **0.83** |
+| Mean Squared Error (MSE)  | **1.02** |
+| Root Mean Squared Error (RMSE) | **1.01** |
 
-## Model Performance
-- Mean Absolute Error: 0.83
-- Mean Squared Error: 1.02
-- Root Mean Squared Error: 1.01
+## 📊 Visualizations
+- 🔥 **Correlation Heatmap**: Shows relationship strength between variables
+- ⭐ **Feature Importance Plot**: Highlights which ad platforms impact sales most
 
-## Visualizations
-- Correlation Heatmap
-- Feature Importance Bar Plot
+## 🔮 Future Improvements
+- Implement hyperparameter tuning (GridSearchCV / RandomizedSearchCV)
+- Evaluate additional models like XGBoost, Lasso, and Ridge Regression
+- Add cross-validation and outlier detection for improved generalization
 
-## Future Improvements
-- Hyperparameter tuning
-- Try additional machine learning algorithms
+## 📬 Contact
+📧 **Email:** kaweeshawickrama@gmail.com
 
-## Contact
-- E-mail: subagya0416@gmail.com
+---
+
+> 📌 *This project is a demonstration of applied data science for business intelligence and can be extended for real-world retail prediction pipelines.*
