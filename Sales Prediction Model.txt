@@ -1,0 +1,109 @@
+Sales Prediction Model
+
+Importing Necessary Libraries
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.ensemble import RandomForestRegressor, VotingRegressor
+from sklearn.metrics import mean_absolute_error, mean_squared_error
+
+In this step, we begin by importing the essential libraries required for building our sales prediction model. These include Pandas and NumPy for handling and analyzing data, Matplotlib and Seaborn for visualizations, and Scikit-learn for machine learning operations.
+
+Load the Dataset
+
+data = pd.read_csv('sales_data.csv')
+data.head()
+
+In this step, we load the dataset containing advertising spend data across different channels, along with corresponding sales figures.
+
+Exploratory Data Analysis (EDA)
+
+print(data.info())
+print(data.describe())
+
+This step helps us understand the dataset's structure, missing values, and key statistics.
+
+Checking for Missing Values
+
+print(data.isnull().sum())
+
+This ensures data integrity by identifying columns with missing values.
+
+Data Cleaning
+
+data = data.dropna()
+
+We remove any rows with missing values to ensure reliable analysis.
+
+Visualizations
+
+plt.figure(figsize=(10, 6))
+sns.heatmap(data.corr(), annot=True, cmap='coolwarm')
+plt.title('Correlation Heatmap')
+plt.show()
+
+This heatmap helps identify key features that influence sales.
+
+Feature Selection
+
+X = data.drop(columns=['Sales'])
+y = data['Sales']
+
+We separate independent variables (features) from the dependent variable (target).
+
+Encoding Categorical Variables
+
+X = pd.get_dummies(X, drop_first=True)
+
+We convert categorical variables into numerical format.
+
+Splitting the Data
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+We split the dataset into 80% training and 20% testing.
+
+Building Models
+
+lr_model = LinearRegression()
+rf_model = RandomForestRegressor(n_estimators=100, random_state=42)
+
+We initialize both a Linear Regression model and a Random Forest model.
+
+Combined Model using Voting Regressor
+
+voting_model = VotingRegressor([('lr', lr_model), ('rf', rf_model)])
+voting_model.fit(X_train, y_train)
+
+We create a Voting Regressor to combine both models for better accuracy.
+
+Predictions and Evaluation
+
+y_pred = voting_model.predict(X_test)
+mae = mean_absolute_error(y_test, y_pred)
+mse = mean_squared_error(y_test, y_pred)
+rmse = np.sqrt(mse)
+print(f'MAE: {mae}, MSE: {mse}, RMSE: {rmse}')
+
+We evaluate the model using Mean Absolute Error, Mean Squared Error, and Root Mean Squared Error.
+
+Feature Importance (for Random Forest)
+
+rf_model.fit(X_train, y_train)
+feature_importance = pd.DataFrame({'Feature': X.columns, 'Importance': rf_model.feature_importances_})
+feature_importance = feature_importance.sort_values(by='Importance', ascending=False)
+
+plt.figure(figsize=(10, 6))
+sns.barplot(x='Importance', y='Feature', data=feature_importance, palette='viridis')
+plt.title('Feature Importance')
+plt.show()
+
+This helps identify the most significant features contributing to sales predictions.
+
+Conclusion
+
+This project successfully builds a predictive model for sales using Linear Regression and Random Forest, combining them with a Voting Regressor. By evaluating feature importance, we can focus on the key drivers of sales to optimize marketing strategies.
